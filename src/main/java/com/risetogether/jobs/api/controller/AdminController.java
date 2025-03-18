@@ -48,6 +48,7 @@ public class AdminController {
 		return response.success(HttpStatus.OK, "Admin Updated Successfully", adminResponse);
 	}
 	
+	@GetMapping("/admins")
 	public ResponseEntity<ResponseStructure<List<AdminResponse>>> findAllAdmins(){
 		List<AdminResponse> adminResponses = adminService.findAllAdmins();
 		return response.success(HttpStatus.FOUND, "Admins Found Successfully",adminResponses);

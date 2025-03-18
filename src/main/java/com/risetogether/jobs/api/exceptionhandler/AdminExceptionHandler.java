@@ -6,6 +6,7 @@ import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.RestControllerAdvice;
 
 import com.risetogether.jobs.api.exception.AdminNotFoundByEmailException;
+import com.risetogether.jobs.api.exception.NoAdminsFoundException;
 import com.risetogether.jobs.api.util.AppResponseBuilder;
 import com.risetogether.jobs.api.util.ErrorStructure;
 
@@ -22,5 +23,10 @@ public class AdminExceptionHandler {
 	@ExceptionHandler(AdminNotFoundByEmailException.class)
 	public ResponseEntity<ErrorStructure<String>> handleAdminNotFoundByEmail(AdminNotFoundByEmailException ex){
 		return response.error(HttpStatus.NOT_FOUND, ex.getMessage(), "Admin not found by Email");
+	}
+	
+	@ExceptionHandler(NoAdminsFoundException.class)
+	public ResponseEntity<ErrorStructure<String>> handleNoAdminsFound(NoAdminsFoundException ex){
+		return response.error(HttpStatus.NOT_FOUND, ex.getMessage(), "No Admins Found");
 	}
 }
