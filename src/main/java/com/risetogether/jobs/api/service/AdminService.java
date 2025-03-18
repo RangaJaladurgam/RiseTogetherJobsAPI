@@ -32,5 +32,15 @@ public class AdminService {
 											 .map(adminMapper::mapToAdminRespone)
 											 .orElseThrow(()-> new AdminNotFoundByEmailException("Failed to find Admin by Email"));
 	}
+
+	public AdminResponse updateAdmin(AdminRequest adminRequest, String email) {
+		return adminRepository.findAdminByEmail(email)
+									 .map((exAdmin)-> {
+										 exAdmin = adminMapper.mapToAdmin(adminRequest, exAdmin);
+										 return adminRepository.save(exAdmin);
+									 })
+									 .map(adminMapper::mapToAdminRespone)
+									 .orElseThrow(()-> new AdminNotFoundByEmailException("Failed to Update Admin by Email"));
+	}
 	
 }
