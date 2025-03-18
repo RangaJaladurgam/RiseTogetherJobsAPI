@@ -6,6 +6,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -39,6 +40,7 @@ public class AdminController {
 		return response.success(HttpStatus.FOUND, "Admin Found Successfully", adminResponse);
 	}
 	
+	@PutMapping("/admins/{email}")
 	public ResponseEntity<ResponseStructure<AdminResponse>> updateAdmin(@RequestBody AdminRequest adminRequest,@PathVariable String email){
 		AdminResponse adminResponse = adminService.updateAdmin(adminRequest,email);
 		return response.success(HttpStatus.OK, "Admin Updated Successfully", adminResponse);
