@@ -7,6 +7,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RestController;
 
 import com.risetogether.jobs.api.requestdto.AdminRequest;
 import com.risetogether.jobs.api.responsedto.AdminResponse;
@@ -14,7 +15,7 @@ import com.risetogether.jobs.api.service.AdminService;
 import com.risetogether.jobs.api.util.AppResponseBuilder;
 import com.risetogether.jobs.api.util.ResponseStructure;
 
-@Controller
+@RestController
 public class AdminController {
 	
 	private final AdminService adminService;
