@@ -25,5 +25,12 @@ public class AdminService {
 		admin = adminRepository.save(admin);
 		return adminMapper.mapToAdminRespone(admin);
 	}
+
+	public AdminResponse findAdminByEmail(String email) {
+		AdminResponse admin = adminRepository.findAdminByEmail(email)
+											 .map(adminMapper::mapToAdminRespone)
+											 .orElseThrow();
+		return null;
+	}
 	
 }
