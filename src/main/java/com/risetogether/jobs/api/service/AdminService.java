@@ -27,10 +27,9 @@ public class AdminService {
 	}
 
 	public AdminResponse findAdminByEmail(String email) {
-		AdminResponse admin = adminRepository.findAdminByEmail(email)
+		return adminRepository.findAdminByEmail(email)
 											 .map(adminMapper::mapToAdminRespone)
 											 .orElseThrow();
-		return null;
 	}
 	
 }
