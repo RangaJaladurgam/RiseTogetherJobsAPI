@@ -39,4 +39,8 @@ public class AdminController {
 		return response.success(HttpStatus.FOUND, "Admin Found Successfully", adminResponse);
 	}
 	
+	public ResponseEntity<ResponseStructure<AdminResponse>> updateAdmin(@RequestBody AdminRequest adminRequest,@PathVariable String email){
+		AdminResponse adminResponse = adminService.updateAdmin(adminRequest,email);
+		return response.success(HttpStatus.OK, "Admin Updated Successfully", adminResponse);
+	}
 }
