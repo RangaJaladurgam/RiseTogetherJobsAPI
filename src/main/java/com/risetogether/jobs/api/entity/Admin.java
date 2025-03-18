@@ -1,5 +1,7 @@
 package com.risetogether.jobs.api.entity;
 
+import com.risetogether.jobs.api.config.GenerateCustomId;
+
 import jakarta.persistence.Entity;
 import jakarta.persistence.Id;
 
@@ -7,6 +9,7 @@ import jakarta.persistence.Id;
 public class Admin {
 	
 	@Id
+	@GenerateCustomId
 	private String adminId;
 	private String username;
 	private String email;
