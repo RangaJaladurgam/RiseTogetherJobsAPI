@@ -1,5 +1,7 @@
 package com.risetogether.jobs.api.service;
 
+import java.util.List;
+
 import org.springframework.stereotype.Service;
 
 import com.risetogether.jobs.api.entity.Category;
@@ -21,6 +23,10 @@ public class CategoryService {
 
 	public Category saveCategory(CategoryRequest categoryRequest) {
 		return categoryRepository.save(categoryMapper.mapToCategory(categoryRequest, new Category()));
+	}
+
+	public List<Category> findAllCategories() {
+		return categoryRepository.findAll();
 	}
 	
 	
