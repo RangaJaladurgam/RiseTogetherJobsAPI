@@ -1,7 +1,10 @@
 package com.risetogether.jobs.api.controller;
 
+import java.util.List;
+
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
@@ -24,12 +27,16 @@ public class CategoryController {
 		this.response = response;
 	}
 	
-	@PostMapping("/categories/")
+	@PostMapping("/categories")
 	public ResponseEntity<ResponseStructure<Category>> saveCategory(@RequestBody CategoryRequest categoryRequest){
 		Category category = categoryService.saveCategory(categoryRequest);
 		return response.success(HttpStatus.CREATED, "Category created successfully", category);
 	}
 	
-	
+	@GetMapping("/categories")
+	public ResponseEntity<ResponseStructure<List<Category>>> findAllCategories(){
+		List<Category> categories = categoryService.findAllCategories();
+		return response.success(HttpStatus.FOUND, "Categories found successfully", categories);
+	}
 	
 }
