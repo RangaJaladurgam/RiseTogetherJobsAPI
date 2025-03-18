@@ -1,4 +1,4 @@
-package com.risetogether.jobs.api.dtos;
+package com.risetogether.jobs.api.requestdto;
 
 public class AdminRequest {
 	
