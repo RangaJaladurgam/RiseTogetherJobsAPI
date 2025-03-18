@@ -3,6 +3,7 @@ package com.risetogether.jobs.api.service;
 import org.springframework.stereotype.Service;
 
 import com.risetogether.jobs.api.entity.Admin;
+import com.risetogether.jobs.api.exception.AdminNotFoundByEmailException;
 import com.risetogether.jobs.api.mapper.AdminMapper;
 import com.risetogether.jobs.api.repository.AdminRepository;
 import com.risetogether.jobs.api.requestdto.AdminRequest;
@@ -24,6 +25,12 @@ public class AdminService {
 		Admin admin = adminMapper.mapToAdmin(adminRequest, new Admin());
 		admin = adminRepository.save(admin);
 		return adminMapper.mapToAdminRespone(admin);
+	}
+
+	public AdminResponse findAdminByEmail(String email) {
+		return adminRepository.findAdminByEmail(email)
+											 .map(adminMapper::mapToAdminRespone)
+											 .orElseThrow(()-> new AdminNotFoundByEmailException("Failed to find Admin by Email"));
 	}
 	
 }
