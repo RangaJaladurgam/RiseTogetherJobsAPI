@@ -5,6 +5,7 @@ import java.util.List;
 import org.springframework.stereotype.Service;
 
 import com.risetogether.jobs.api.entity.Category;
+import com.risetogether.jobs.api.exception.NoCategoriesFoundException;
 import com.risetogether.jobs.api.mapper.CategoryMapper;
 import com.risetogether.jobs.api.repository.CategoryRepository;
 import com.risetogether.jobs.api.requestdto.CategoryRequest;
@@ -26,7 +27,10 @@ public class CategoryService {
 	}
 
 	public List<Category> findAllCategories() {
-		return categoryRepository.findAll();
+		List<Category> categories = categoryRepository.findAll();
+		if(categories.isEmpty())
+			throw new NoCategoriesFoundException("Failed to Find all Categories");
+		return categories;
 	}
 	
 	
