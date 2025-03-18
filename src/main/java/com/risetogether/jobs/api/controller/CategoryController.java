@@ -1,9 +1,16 @@
 package com.risetogether.jobs.api.controller;
 
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.risetogether.jobs.api.entity.Category;
+import com.risetogether.jobs.api.requestdto.CategoryRequest;
 import com.risetogether.jobs.api.service.CategoryService;
 import com.risetogether.jobs.api.util.AppResponseBuilder;
+import com.risetogether.jobs.api.util.ResponseStructure;
 
 @RestController
 public class CategoryController {
@@ -17,8 +24,11 @@ public class CategoryController {
 		this.response = response;
 	}
 	
-	
-	
+	@PostMapping("/categories/")
+	public ResponseEntity<ResponseStructure<Category>> saveCategory(@RequestBody CategoryRequest categoryRequest){
+		Category category = categoryService.saveCategory(categoryRequest);
+		return response.success(HttpStatus.CREATED, "Category created successfully", category);
+	}
 	
 	
 	
