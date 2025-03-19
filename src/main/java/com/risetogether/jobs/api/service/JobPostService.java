@@ -9,6 +9,7 @@ import com.risetogether.jobs.api.entity.Category;
 import com.risetogether.jobs.api.entity.JobPost;
 import com.risetogether.jobs.api.exception.AdminNotFoundByEmailException;
 import com.risetogether.jobs.api.exception.CategoryNotfoundByIdException;
+import com.risetogether.jobs.api.exception.JobPostNotFoundByIdException;
 import com.risetogether.jobs.api.mapper.JobPostMapper;
 import com.risetogether.jobs.api.repository.AdminRepository;
 import com.risetogether.jobs.api.repository.CategoryRepository;
@@ -45,6 +46,14 @@ public class JobPostService {
 		jobPost.setCreatedAt(LocalDateTime.now());
 		return jobPostMapper.mapToJobPostResponse(jobPostRepository.save(jobPost));
 		
+	}
+
+	public JobPostResponse findJobPost(String jobPostId) {
+		return jobPostRepository.findById(jobPostId)
+								.map(jobPostMapper::mapToJobPostResponse)
+								.orElseThrow(() -> new JobPostNotFoundByIdException("Failed to find JobPost by Id"));
+		
+		 
 	}
 	
 	
