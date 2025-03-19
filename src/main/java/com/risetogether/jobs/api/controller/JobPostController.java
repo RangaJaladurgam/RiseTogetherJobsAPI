@@ -1,9 +1,16 @@
 package com.risetogether.jobs.api.controller;
 
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.risetogether.jobs.api.requestdto.JobPostRequest;
+import com.risetogether.jobs.api.responsedto.JobPostResponse;
 import com.risetogether.jobs.api.service.JobPostService;
 import com.risetogether.jobs.api.util.AppResponseBuilder;
+import com.risetogether.jobs.api.util.ResponseStructure;
 
 @RestController
 public class JobPostController {
@@ -17,5 +24,9 @@ public class JobPostController {
 		this.response = response;
 	}
 	
-	
+	@PostMapping("/jobs/create")
+	public ResponseEntity<ResponseStructure<JobPostResponse>> saveJobPost(@RequestBody JobPostRequest jobPostRequest){
+		JobPostResponse jobPostResponse = jobPostService.saveJobPost(jobPostRequest);
+		return response.success(HttpStatus.CREATED, "JobPost Created Successfully", jobPostResponse);
+	}
 }
