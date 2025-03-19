@@ -6,6 +6,7 @@ import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.RestControllerAdvice;
 
 import com.risetogether.jobs.api.exception.CategoryNotfoundByIdException;
+import com.risetogether.jobs.api.exception.JobPostNotFoundByIdException;
 import com.risetogether.jobs.api.exception.NoCategoriesFoundException;
 import com.risetogether.jobs.api.util.AppResponseBuilder;
 import com.risetogether.jobs.api.util.ErrorStructure;
@@ -29,5 +30,10 @@ public class CategoryExceptionHandler {
 	@ExceptionHandler(NoCategoriesFoundException.class)
 	public ResponseEntity<ErrorStructure<String>> handleNoCategoriesFound(NoCategoriesFoundException ex){
 		return response.error(HttpStatus.NOT_FOUND, ex.getMessage(), "No Categories Found");
+	}
+	
+	@ExceptionHandler(JobPostNotFoundByIdException.class)
+	public ResponseEntity<ErrorStructure<String>> handleJobPostNotFoundById(JobPostNotFoundByIdException ex){
+		return response.error(HttpStatus.NOT_FOUND, ex.getMessage(), "Job Post Not found By Id");
 	}
 }
