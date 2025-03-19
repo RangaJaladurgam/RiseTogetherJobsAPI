@@ -19,7 +19,7 @@ public class JobPostResponse {
 	private LocalDateTime createdAt;
 	private LocalDate expireDate;
 
-	private AdminResponse admin;
+	private AdminResponse adminResponse;
 	private Category category;
 	public String getJobPostId() {
 		return JobPostId;
@@ -63,11 +63,11 @@ public class JobPostResponse {
 	public void setExpireDate(LocalDate expireDate) {
 		this.expireDate = expireDate;
 	}
-	public AdminResponse getAdmin() {
-		return admin;
+	public AdminResponse getAdminResponse() {
+		return adminResponse;
 	}
-	public void setAdmin(AdminResponse admin) {
-		this.admin = admin;
+	public void setAdminResponse(AdminResponse admin) {
+		this.adminResponse = admin;
 	}
 	public Category getCategory() {
 		return category;

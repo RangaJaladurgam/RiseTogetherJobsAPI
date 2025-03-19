@@ -9,6 +9,14 @@ import com.risetogether.jobs.api.responsedto.JobPostResponse;
 @Component
 public class JobPostMapper {
 	
+	private final AdminMapper adminMapper;
+	
+	
+	public JobPostMapper(AdminMapper adminMapper) {
+		super();
+		this.adminMapper = adminMapper;
+	}
+
 	public JobPost mapToJobPost(JobPostRequest jobPostRequest,JobPost jobPost) {
 		jobPost.setTitle(jobPostRequest.getTitle());
 		jobPost.setDescription(jobPostRequest.getDescription());
@@ -28,6 +36,7 @@ public class JobPostMapper {
 		response.setCreatedAt(jobPost.getCreatedAt());
 		response.setExpireDate(jobPost.getExpireDate());
 		response.setCategory(jobPost.getCategory());
+		response.setAdminResponse(adminMapper.mapToAdminRespone( jobPost.getAdmin()));
 		return response;
 	}
 }

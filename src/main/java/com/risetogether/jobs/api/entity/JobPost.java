@@ -15,11 +15,11 @@ public class JobPost {
 	
 	@Id
 	@GenerateCustomId
-	private String JobPostId;
+	private String jobPostId;
 	private String title;
 	@Column(columnDefinition = "Text")
 	private String description;
-	private String Location;
+	private String location;
 	private String imageUrl;
 	private LocalDateTime createdAt;
 	private LocalDate expireDate;
@@ -31,11 +31,11 @@ public class JobPost {
 	private Category category;
 
 	public String getJobPostId() {
-		return JobPostId;
+		return jobPostId;
 	}
 
 	public void setJobPostId(String jobPostId) {
-		JobPostId = jobPostId;
+		jobPostId = jobPostId;
 	}
 
 	public String getTitle() {
@@ -55,11 +55,11 @@ public class JobPost {
 	}
 
 	public String getLocation() {
-		return Location;
+		return location;
 	}
 
 	public void setLocation(String location) {
-		Location = location;
+		this.location = location;
 	}
 
 	public String getImageUrl() {

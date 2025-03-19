@@ -8,7 +8,7 @@ public class JobPostRequest {
 	
 	private String title;
 	private String description;
-	private String Location;
+	private String location;
 	private String imageUrl;
 	private LocalDate expireDate;
 	
@@ -25,10 +25,10 @@ public class JobPostRequest {
 		this.description = description;
 	}
 	public String getLocation() {
-		return Location;
+		return location;
 	}
 	public void setLocation(String location) {
-		Location = location;
+		this.location = location;
 	}
 	public String getImageUrl() {
 		return imageUrl;
