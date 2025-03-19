@@ -1,5 +1,6 @@
 package com.risetogether.jobs.api.responsedto;
 
+import java.time.LocalDate;
 import java.time.LocalDateTime;
 
 import com.risetogether.jobs.api.entity.Admin;
@@ -16,7 +17,7 @@ public class JobPostResponse {
 	private String Location;
 	private String imageUrl;
 	private LocalDateTime createdAt;
-	private LocalDateTime expireDate;
+	private LocalDate expireDate;
 
 	private AdminResponse admin;
 	private Category category;
@@ -56,10 +57,10 @@ public class JobPostResponse {
 	public void setCreatedAt(LocalDateTime createdAt) {
 		this.createdAt = createdAt;
 	}
-	public LocalDateTime getExpireDate() {
+	public LocalDate getExpireDate() {
 		return expireDate;
 	}
-	public void setExpireDate(LocalDateTime expireDate) {
+	public void setExpireDate(LocalDate expireDate) {
 		this.expireDate = expireDate;
 	}
 	public AdminResponse getAdmin() {

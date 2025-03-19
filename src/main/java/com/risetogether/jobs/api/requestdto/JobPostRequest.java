@@ -1,6 +1,6 @@
 package com.risetogether.jobs.api.requestdto;
 
-import java.time.LocalDateTime;
+import java.time.LocalDate;
 
 import jakarta.persistence.Column;
 
@@ -10,7 +10,8 @@ public class JobPostRequest {
 	private String description;
 	private String Location;
 	private String imageUrl;
-	private LocalDateTime expireDate;
+	private LocalDate expireDate;
+	
 	public String getTitle() {
 		return title;
 	}
@@ -35,10 +36,10 @@ public class JobPostRequest {
 	public void setImageUrl(String imageUrl) {
 		this.imageUrl = imageUrl;
 	}
-	public LocalDateTime getExpireDate() {
+	public LocalDate getExpireDate() {
 		return expireDate;
 	}
-	public void setExpireDate(LocalDateTime expireDate) {
+	public void setExpireDate(LocalDate expireDate) {
 		this.expireDate = expireDate;
 	}
 	

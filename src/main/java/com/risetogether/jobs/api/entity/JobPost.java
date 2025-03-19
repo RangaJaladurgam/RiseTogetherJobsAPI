@@ -1,5 +1,6 @@
 package com.risetogether.jobs.api.entity;
 
+import java.time.LocalDate;
 import java.time.LocalDateTime;
 
 import com.risetogether.jobs.api.config.GenerateCustomId;
@@ -21,7 +22,7 @@ public class JobPost {
 	private String Location;
 	private String imageUrl;
 	private LocalDateTime createdAt;
-	private LocalDateTime expireDate;
+	private LocalDate expireDate;
 	
 	@ManyToOne
 	private Admin admin;
@@ -77,11 +78,11 @@ public class JobPost {
 		this.createdAt = createdAt;
 	}
 
-	public LocalDateTime getExpireDate() {
+	public LocalDate getExpireDate() {
 		return expireDate;
 	}
 
-	public void setExpireDate(LocalDateTime expireDate) {
+	public void setExpireDate(LocalDate expireDate) {
 		this.expireDate = expireDate;
 	}
 
