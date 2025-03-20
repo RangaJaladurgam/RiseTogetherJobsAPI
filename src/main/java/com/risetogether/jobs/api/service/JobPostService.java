@@ -63,6 +63,15 @@ public class JobPostService {
 								.map(jobPostMapper::mapToJobPostResponse)
 								.toList();
 	}
+
+	public List<JobPostResponse> findAllJobsByCategory(String categoryId) {
+		return jobPostRepository.findJobsByCategoryId(categoryId)
+								.stream()
+								.map(jobPostMapper::mapToJobPostResponse)
+								.toList();
+	}
+
+	
 	
 	
 }

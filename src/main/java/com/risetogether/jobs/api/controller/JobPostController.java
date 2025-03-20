@@ -47,9 +47,9 @@ public class JobPostController {
 		return response.success(HttpStatus.FOUND, "JobPosts Found Successfully", jobPostResponse);
 	}
 	
-	
+	@GetMapping("/jobs/categories/{categoryId}")
 	public ResponseEntity<ResponseStructure<List<JobPostResponse>>> findAllJobsByCategory(@PathVariable String categoryId){
-		List<JobPostResponse> jobPostResponse = jobPostService.findAllJobsByCategory();
+		List<JobPostResponse> jobPostResponse = jobPostService.findAllJobsByCategory(categoryId);
 		return response.success(HttpStatus.FOUND, "JobPosts Found By Category Successfully", jobPostResponse);
 	}
 	
