@@ -1,5 +1,7 @@
 package com.risetogether.jobs.api.controller;
 
+import java.util.List;
+
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -37,5 +39,11 @@ public class JobPostController {
 	public ResponseEntity<ResponseStructure<JobPostResponse>> findJobPost(@PathVariable String jobPostId){
 		JobPostResponse jobPostResponse = jobPostService.findJobPost(jobPostId);
 		return response.success(HttpStatus.FOUND, "JobPost Found Successfully", jobPostResponse);
+	}
+	
+	@GetMapping("/jobs")
+	public ResponseEntity<ResponseStructure<List<JobPostResponse>>> findAllJobs(){
+		List<JobPostResponse> jobPostResponse = jobPostService.findAllJobs();
+		return response.success(HttpStatus.FOUND, "JobPosts Found Successfully", jobPostResponse);
 	}
 }
