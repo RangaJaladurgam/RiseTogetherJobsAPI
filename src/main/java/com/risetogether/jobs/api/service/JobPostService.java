@@ -71,6 +71,13 @@ public class JobPostService {
 								.toList();
 	}
 
+	public String deleteJobPostById(String jobPostId) {
+		JobPost jobPost = jobPostRepository.findById(jobPostId)
+										   .orElseThrow(() -> new JobPostNotFoundByIdException("Failed to find JobPost by Id"));
+		jobPostRepository.delete(jobPost);
+		return "Deleted Successfully";
+	}
+
 	
 	
 	

@@ -55,9 +55,9 @@ public class JobPostController {
 	}
 	
 	@DeleteMapping("/jobs/{jobPostId}")
-	public ResponseEntity<ResponseStructure<JobPostResponse>> deleteJobPostById(@PathVariable String jobPostId){
-		JobPostResponse jobPostResponse = jobPostService.deleteJobPostById(jobPostId);
-		return response.success(HttpStatus.OK, "JobPosts Found By Category Successfully", jobPostResponse);
+	public ResponseEntity<ResponseStructure<String>> deleteJobPostById(@PathVariable String jobPostId){
+		String jobPostResponse = jobPostService.deleteJobPostById(jobPostId);
+		return response.success(HttpStatus.OK, "JobPost Deleted Successfully", jobPostResponse);
 	}
 	
 	
