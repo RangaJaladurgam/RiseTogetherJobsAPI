@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.risetogether.jobs.api.requestdto.LoginRequest;
+import com.risetogether.jobs.api.responsedto.AuthResponse;
 
 @RestController
 @RequestMapping("/auth")
