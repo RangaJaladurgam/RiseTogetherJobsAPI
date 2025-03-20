@@ -2,6 +2,7 @@ package com.risetogether.jobs.api.service;
 
 import java.util.List;
 
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import com.risetogether.jobs.api.entity.Admin;
@@ -16,16 +17,19 @@ import com.risetogether.jobs.api.responsedto.AdminResponse;
 public class AdminService {
 
 	private final AdminRepository adminRepository;
-	private final AdminMapper adminMapper; 
+	private final AdminMapper adminMapper;
+	private final PasswordEncoder passwordEncoder;
 
-	public AdminService(AdminRepository adminRepository, AdminMapper adminMapper) {
+	public AdminService(AdminRepository adminRepository, AdminMapper adminMapper, PasswordEncoder passwordEncoder) {
 		super();
 		this.adminRepository = adminRepository;
 		this.adminMapper = adminMapper;
+		this.passwordEncoder = passwordEncoder;
 	}
 
 	public AdminResponse saveAdmin(AdminRequest adminRequest) {
 		Admin admin = adminMapper.mapToAdmin(adminRequest, new Admin());
+		admin.setPassword(passwordEncoder.encode(admin.getPassword()));
 		admin = adminRepository.save(admin);
 		return adminMapper.mapToAdminRespone(admin);
 	}
@@ -40,6 +44,7 @@ public class AdminService {
 		return adminRepository.findAdminByEmail(email)
 				.map((exAdmin)-> {
 					exAdmin = adminMapper.mapToAdmin(adminRequest, exAdmin);
+					exAdmin.setPassword(passwordEncoder.encode(exAdmin.getPassword()));
 					return adminRepository.save(exAdmin);
 				})
 				.map(adminMapper::mapToAdminRespone)
