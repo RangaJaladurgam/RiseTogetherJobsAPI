@@ -38,4 +38,9 @@ public class JobPostController {
 		JobPostResponse jobPostResponse = jobPostService.findJobPost(jobPostId);
 		return response.success(HttpStatus.FOUND, "JobPost Found Successfully", jobPostResponse);
 	}
+	
+	public ResponseEntity<ResponseStructure<JobPostResponse>> findAllJobs(){
+		JobPostResponse jobPostResponse = jobPostService.findAllJobs();
+		return response.success(HttpStatus.FOUND, "JobPosts Found Successfully", jobPostResponse);
+	}
 }
