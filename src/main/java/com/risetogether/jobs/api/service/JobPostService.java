@@ -73,9 +73,18 @@ public class JobPostService {
 
 	public String deleteJobPostById(String jobPostId) {
 		JobPost jobPost = jobPostRepository.findById(jobPostId)
-										   .orElseThrow(() -> new JobPostNotFoundByIdException("Failed to find JobPost by Id"));
+										   .orElseThrow(() -> new JobPostNotFoundByIdException("Failed to delete JobPost by Id"));
 		jobPostRepository.delete(jobPost);
 		return "Deleted Successfully";
+	}
+
+	public JobPostResponse updateJobPostById(JobPostRequest jobPostRequest,String jobPostId) {
+		return jobPostRepository.findById(jobPostId).map((exJobPost) -> {
+												jobPostMapper.mapToJobPost(jobPostRequest, exJobPost);
+												return jobPostRepository.save(exJobPost);
+											})
+												.map(jobPostMapper::mapToJobPostResponse)
+												.orElseThrow(() -> new JobPostNotFoundByIdException("Failed to update JobPost by Id"));
 	}
 
 	
