@@ -18,6 +18,8 @@ import com.risetogether.jobs.api.service.AdminService;
 import com.risetogether.jobs.api.util.AppResponseBuilder;
 import com.risetogether.jobs.api.util.ResponseStructure;
 
+import jakarta.validation.Valid;
+
 @RestController
 public class AdminController {
 	
@@ -31,7 +33,7 @@ public class AdminController {
 	}
 	
 	@PostMapping("/admins/register")
-	public ResponseEntity<ResponseStructure<AdminResponse>> saveAdmin(@RequestBody AdminRequest adminRequest){
+	public ResponseEntity<ResponseStructure<AdminResponse>> saveAdmin(@RequestBody @Valid AdminRequest adminRequest){
 		AdminResponse admin = adminService.saveAdmin(adminRequest);
 		return response.success(HttpStatus.CREATED, "Admin Created Successfully", admin);
 	}
@@ -43,7 +45,7 @@ public class AdminController {
 	}
 	
 	@PutMapping("/admins/{email}")
-	public ResponseEntity<ResponseStructure<AdminResponse>> updateAdmin(@RequestBody AdminRequest adminRequest,@PathVariable String email){
+	public ResponseEntity<ResponseStructure<AdminResponse>> updateAdmin(@RequestBody @Valid AdminRequest adminRequest,@PathVariable String email){
 		AdminResponse adminResponse = adminService.updateAdmin(adminRequest,email);
 		return response.success(HttpStatus.OK, "Admin Updated Successfully", adminResponse);
 	}
