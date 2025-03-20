@@ -1,6 +1,7 @@
 package com.risetogether.jobs.api.service;
 
 import java.time.LocalDateTime;
+import java.util.List;
 
 import org.springframework.stereotype.Service;
 
@@ -54,6 +55,13 @@ public class JobPostService {
 								.orElseThrow(() -> new JobPostNotFoundByIdException("Failed to find JobPost by Id"));
 		
 		 
+	}
+
+	public List<JobPostResponse> findAllJobs() {
+		return jobPostRepository.findAll()
+								.stream()
+								.map(jobPostMapper::mapToJobPostResponse)
+								.toList();
 	}
 	
 	
