@@ -4,6 +4,7 @@ import java.util.List;
 
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -51,6 +52,12 @@ public class JobPostController {
 	public ResponseEntity<ResponseStructure<List<JobPostResponse>>> findAllJobsByCategory(@PathVariable String categoryId){
 		List<JobPostResponse> jobPostResponse = jobPostService.findAllJobsByCategory(categoryId);
 		return response.success(HttpStatus.FOUND, "JobPosts Found By Category Successfully", jobPostResponse);
+	}
+	
+	@DeleteMapping("/jobs/{jobPostId}")
+	public ResponseEntity<ResponseStructure<JobPostResponse>> deleteJobPostById(@PathVariable String jobPostId){
+		JobPostResponse jobPostResponse = jobPostService.deleteJobPostById(jobPostId);
+		return response.success(HttpStatus.OK, "JobPosts Found By Category Successfully", jobPostResponse);
 	}
 	
 	
