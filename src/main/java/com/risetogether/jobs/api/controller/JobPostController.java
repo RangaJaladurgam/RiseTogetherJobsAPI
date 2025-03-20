@@ -8,6 +8,7 @@ import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
@@ -53,6 +54,14 @@ public class JobPostController {
 		List<JobPostResponse> jobPostResponse = jobPostService.findAllJobsByCategory(categoryId);
 		return response.success(HttpStatus.FOUND, "JobPosts Found By Category Successfully", jobPostResponse);
 	}
+	
+	@PutMapping("/jobs/{jobPostId}")
+	public ResponseEntity<ResponseStructure<JobPostResponse>> updateJobPostById(@PathVariable String jobPostId){
+		JobPostResponse jobPostResponse = jobPostService.updateJobPostById(jobPostId);
+		return response.success(HttpStatus.OK, "JobPost Updated Successfully", jobPostResponse);
+	}
+	
+	
 	
 	@DeleteMapping("/jobs/{jobPostId}")
 	public ResponseEntity<ResponseStructure<String>> deleteJobPostById(@PathVariable String jobPostId){
