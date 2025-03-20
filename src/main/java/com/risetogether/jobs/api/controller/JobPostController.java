@@ -56,13 +56,12 @@ public class JobPostController {
 	}
 	
 	@PutMapping("/jobs/{jobPostId}")
-	public ResponseEntity<ResponseStructure<JobPostResponse>> updateJobPostById(@PathVariable String jobPostId){
-		JobPostResponse jobPostResponse = jobPostService.updateJobPostById(jobPostId);
+	public ResponseEntity<ResponseStructure<JobPostResponse>> updateJobPostById(@RequestBody JobPostRequest jobPostRequest,@PathVariable String jobPostId){
+		JobPostResponse jobPostResponse = jobPostService.updateJobPostById(jobPostRequest,jobPostId);
 		return response.success(HttpStatus.OK, "JobPost Updated Successfully", jobPostResponse);
 	}
 	
-	
-	
+
 	@DeleteMapping("/jobs/{jobPostId}")
 	public ResponseEntity<ResponseStructure<String>> deleteJobPostById(@PathVariable String jobPostId){
 		String jobPostResponse = jobPostService.deleteJobPostById(jobPostId);
