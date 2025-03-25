@@ -4,6 +4,9 @@ import java.util.List;
 
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.config.annotation.authentication.configuration.AuthenticationConfiguration;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -32,7 +35,9 @@ public class JobPostController {
 	}
 	
 	@PostMapping("/jobs/create")
-	public ResponseEntity<ResponseStructure<JobPostResponse>> saveJobPost(@RequestBody JobPostRequest jobPostRequest,@RequestParam String email,@RequestParam String categoryId){
+	public ResponseEntity<ResponseStructure<JobPostResponse>> saveJobPost(@RequestBody JobPostRequest jobPostRequest,@RequestParam String categoryId){
+		Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+		String email = authentication.getName();
 		JobPostResponse jobPostResponse = jobPostService.saveJobPost(jobPostRequest,email,categoryId);
 		return response.success(HttpStatus.CREATED, "JobPost Created Successfully", jobPostResponse);
 	}
