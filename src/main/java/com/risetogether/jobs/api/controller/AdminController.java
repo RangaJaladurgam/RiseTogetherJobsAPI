@@ -4,6 +4,8 @@ import java.util.List;
 
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -44,8 +46,10 @@ public class AdminController {
 		return response.success(HttpStatus.FOUND, "Admin Found Successfully", adminResponse);
 	}
 	
-	@PutMapping("/admins/{email}")
-	public ResponseEntity<ResponseStructure<AdminResponse>> updateAdmin(@RequestBody @Valid AdminRequest adminRequest,@PathVariable String email){
+	@PutMapping("/admins")
+	public ResponseEntity<ResponseStructure<AdminResponse>> updateAdmin(@RequestBody @Valid AdminRequest adminRequest){
+		Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+		String email = authentication.getName();
 		AdminResponse adminResponse = adminService.updateAdmin(adminRequest,email);
 		return response.success(HttpStatus.OK, "Admin Updated Successfully", adminResponse);
 	}
