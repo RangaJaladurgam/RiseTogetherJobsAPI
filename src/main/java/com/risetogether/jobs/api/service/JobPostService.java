@@ -78,9 +78,12 @@ public class JobPostService {
 		return "Deleted Successfully";
 	}
 
-	public JobPostResponse updateJobPostById(JobPostRequest jobPostRequest,String jobPostId) {
+	public JobPostResponse updateJobPostById(JobPostRequest jobPostRequest,String jobPostId,String categoryId) {
+		Category category = categoryRepository.findById(categoryId)
+				.orElseThrow(()-> new CategoryNotfoundByIdException("Failed to save Job Post"));
 		return jobPostRepository.findById(jobPostId).map((exJobPost) -> {
 												jobPostMapper.mapToJobPost(jobPostRequest, exJobPost);
+												exJobPost.setCategory(category);
 												return jobPostRepository.save(exJobPost);
 											})
 												.map(jobPostMapper::mapToJobPostResponse)
