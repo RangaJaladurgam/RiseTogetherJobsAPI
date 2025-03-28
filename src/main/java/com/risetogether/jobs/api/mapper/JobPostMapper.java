@@ -20,9 +20,12 @@ public class JobPostMapper {
 	public JobPost mapToJobPost(JobPostRequest jobPostRequest,JobPost jobPost) {
 		jobPost.setTitle(jobPostRequest.getTitle());
 		jobPost.setDescription(jobPostRequest.getDescription());
+		jobPost.setQualifications(jobPostRequest.getQualifications());
 		jobPost.setLocation(jobPostRequest.getLocation());
 		jobPost.setImageUrl(jobPostRequest.getImageUrl());
 		jobPost.setExpireDate(jobPostRequest.getExpireDate());
+		jobPost.setPassOutYears(jobPostRequest.getPassOutYears());
+		jobPost.setApplyLink(jobPostRequest.getApplyLink());
 		return jobPost;
 	}
 	
@@ -31,12 +34,15 @@ public class JobPostMapper {
 		response.setJobPostId(jobPost.getJobPostId());
 		response.setTitle(jobPost.getTitle());
 		response.setDescription(jobPost.getDescription());
+		response.setQualifications(jobPost.getQualifications());
 		response.setLocation(jobPost.getLocation());
 		response.setImageUrl(jobPost.getImageUrl());
 		response.setCreatedAt(jobPost.getCreatedAt());
 		response.setExpireDate(jobPost.getExpireDate());
 		response.setCategory(jobPost.getCategory());
 		response.setAdminResponse(adminMapper.mapToAdminRespone( jobPost.getAdmin()));
+		response.setPassOutYears(jobPost.getPassOutYears());
+		response.setApplyLink(jobPost.getApplyLink());
 		return response;
 	}
 }
