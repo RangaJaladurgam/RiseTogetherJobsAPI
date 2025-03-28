@@ -2,12 +2,16 @@ package com.risetogether.jobs.api.entity;
 
 import java.time.LocalDate;
 import java.time.LocalDateTime;
+import java.util.List;
 
 import com.risetogether.jobs.api.config.GenerateCustomId;
 
+import jakarta.persistence.CollectionTable;
 import jakarta.persistence.Column;
+import jakarta.persistence.ElementCollection;
 import jakarta.persistence.Entity;
 import jakarta.persistence.Id;
+import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
 
 @Entity
@@ -19,10 +23,19 @@ public class JobPost {
 	private String title;
 	@Column(columnDefinition = "Text")
 	private String description;
+	@ElementCollection
+	@CollectionTable(name = "job_post_passout_years", joinColumns = @JoinColumn(name = "job_post_id"))
+	@Column(name = "year")
+	private List<Integer> passOutYears;
+	@ElementCollection
+	@CollectionTable(name = "job_post_qualification", joinColumns = @JoinColumn(name = "job_post_id"))
+	@Column(name = "year")
+	private List<String> qualifications;
 	private String location;
 	private String imageUrl;
 	private LocalDateTime createdAt;
 	private LocalDate expireDate;
+	private String applyLink;
 	
 	@ManyToOne
 	private Admin admin;
@@ -35,7 +48,7 @@ public class JobPost {
 	}
 
 	public void setJobPostId(String jobPostId) {
-		jobPostId = jobPostId;
+		this.jobPostId = jobPostId;
 	}
 
 	public String getTitle() {
@@ -52,6 +65,15 @@ public class JobPost {
 
 	public void setDescription(String description) {
 		this.description = description;
+	}
+	
+
+	public List<String> getQualifications() {
+		return qualifications;
+	}
+
+	public void setQualifications(List<String> qualifications) {
+		this.qualifications = qualifications;
 	}
 
 	public String getLocation() {
@@ -70,6 +92,14 @@ public class JobPost {
 		this.imageUrl = imageUrl;
 	}
 
+	public List<Integer> getPassOutYears() {
+		return passOutYears;
+	}
+
+	public void setPassOutYears(List<Integer> passOutYears) {
+		this.passOutYears = passOutYears;
+	}
+
 	public LocalDateTime getCreatedAt() {
 		return createdAt;
 	}
@@ -84,6 +114,14 @@ public class JobPost {
 
 	public void setExpireDate(LocalDate expireDate) {
 		this.expireDate = expireDate;
+	}
+
+	public String getApplyLink() {
+		return applyLink;
+	}
+
+	public void setApplyLink(String applyLink) {
+		this.applyLink = applyLink;
 	}
 
 	public Admin getAdmin() {
@@ -101,6 +139,7 @@ public class JobPost {
 	public void setCategory(Category category) {
 		this.category = category;
 	}
+	
 	
 	
 }

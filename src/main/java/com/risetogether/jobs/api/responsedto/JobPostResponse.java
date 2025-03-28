@@ -2,6 +2,7 @@ package com.risetogether.jobs.api.responsedto;
 
 import java.time.LocalDate;
 import java.time.LocalDateTime;
+import java.util.List;
 
 import com.risetogether.jobs.api.entity.Admin;
 import com.risetogether.jobs.api.entity.Category;
@@ -14,13 +15,18 @@ public class JobPostResponse {
 	private String JobPostId;
 	private String title;
 	private String description;
+	private List<String> qualifications;
+	private List<Integer> passOutYears;
 	private String Location;
 	private String imageUrl;
 	private LocalDateTime createdAt;
 	private LocalDate expireDate;
+	private String applyLink;
 
 	private AdminResponse adminResponse;
 	private Category category;
+
+
 	public String getJobPostId() {
 		return JobPostId;
 	}
@@ -38,6 +44,21 @@ public class JobPostResponse {
 	}
 	public void setDescription(String description) {
 		this.description = description;
+	}
+
+	public List<String> getQualifications() {
+		return qualifications;
+	}
+
+	public void setQualifications(List<String> qualifications) {
+		this.qualifications = qualifications;
+	}
+
+	public List<Integer> getPassOutYears() {
+		return passOutYears;
+	}
+	public void setPassOutYears(List<Integer> passOutYears) {
+		this.passOutYears = passOutYears;
 	}
 	public String getLocation() {
 		return Location;
@@ -63,6 +84,13 @@ public class JobPostResponse {
 	public void setExpireDate(LocalDate expireDate) {
 		this.expireDate = expireDate;
 	}
+
+	public String getApplyLink() {
+		return applyLink;
+	}
+	public void setApplyLink(String applyLink) {
+		this.applyLink = applyLink;
+	}
 	public AdminResponse getAdminResponse() {
 		return adminResponse;
 	}
@@ -75,6 +103,6 @@ public class JobPostResponse {
 	public void setCategory(Category category) {
 		this.category = category;
 	}
-	
-	
+
+
 }

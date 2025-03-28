@@ -61,8 +61,8 @@ public class JobPostController {
 	}
 	
 	@PutMapping("/jobs/{jobPostId}")
-	public ResponseEntity<ResponseStructure<JobPostResponse>> updateJobPostById(@RequestBody JobPostRequest jobPostRequest,@PathVariable String jobPostId){
-		JobPostResponse jobPostResponse = jobPostService.updateJobPostById(jobPostRequest,jobPostId);
+	public ResponseEntity<ResponseStructure<JobPostResponse>> updateJobPostById(@RequestBody JobPostRequest jobPostRequest,@PathVariable String jobPostId,@RequestParam String categoryId){
+		JobPostResponse jobPostResponse = jobPostService.updateJobPostById(jobPostRequest,jobPostId,categoryId);
 		return response.success(HttpStatus.OK, "JobPost Updated Successfully", jobPostResponse);
 	}
 	
